@@ -1,2 +1,6 @@
 streamlit
 PyPDF2
+langchain
+langchain_cohere
+langchain_community
+faiss-cpu

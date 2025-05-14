@@ -20,6 +20,17 @@ with st.sidebar:
     files = st.file_uploader("Upload one or more PDFs", type="pdf", accept_multiple_files=True)
 
 
+######################################################################################################################
+
+# Initialize chat history once
+if "history" not in st.session_state:
+    st.session_state["history"] = []
+
+
+# Clear history button
+if st.sidebar.button("🧹 Clear History"):
+    st.session_state["history"] = []
+    st.session_state["submitted"] = []
 
 ######################################################################################################################
 
@@ -109,3 +120,22 @@ if files:
 
         response = LLM.predict(prompt)
         st.write(response)
+
+        # store in session history
+        st.session_state["history"].append({
+            "question": st.session_state["submitted"],
+            "answer": response
+        })
+
+######################################################################################################################
+
+        # Show chat history
+        st.markdown("---")
+        st.markdown("## 🕓 Chat History")
+
+
+        for qa in reversed(st.session_state["history"]):
+            st.markdown(f"**Your question:** {qa['question']}")
+            st.markdown(f"**Answer:** {qa['answer']}")
+            st.markdown("---")
+######################################################################################################################

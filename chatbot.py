@@ -14,7 +14,7 @@ COHERE_API_KEY = "NfX96iKqCqTgcJod9s35ashIUboKyXfKDXDvun1Z"
 
 # Creating our UI
 # Upload pdf files
-st.header("Chatbot 2.0 (Hybrid)")
+st.header("🤖 PDF Chatbot 2.0 (LLM + Reasoning)")
 
 with st.sidebar:
     files = st.file_uploader("Upload one or more PDFs", type="pdf", accept_multiple_files=True)
